@@ -18,7 +18,11 @@ export class MockClock extends Clock {
   }
 
   addEvent(config: Phaser.Time.TimerEvent | Phaser.Types.Time.TimerEventConfig): Phaser.Time.TimerEvent {
-    const cfg = { ...config, delay: this.overrideDelay || config.delay};
-    return super.addEvent(cfg);
+    return super.addEvent({
+      delay: 0.01,
+      repeat: 0,
+      startAt: 0,
+      callback: config.callback,
+    });
   }
 }
